@@ -396,6 +396,15 @@ nav a:focus {
 
   <!-- الشريط العلوي -->
   <header>
+    <div id="welcomeUser" style="
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #38bdf8;
+  font-size: 18px;
+  font-weight: 800;
+"></div>
+
     <div class="nav-container">
       <div class="logo">مستقبل</div>
       <nav>
@@ -572,5 +581,17 @@ nav a:focus {
     // تحديث السنة في الفوتر تلقائياً
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+  // قراءة بيانات المستخدم المسجل
+  const user = JSON.parse(localStorage.getItem("loggedUser"));
+
+  // إذا فيه مستخدم مسجل الدخول
+  if (user) {
+    document.getElementById("welcomeUser").textContent =
+      "ارحب يا " + user.name;
+  }
+</script>
+
 </body>
 </html>
