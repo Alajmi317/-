@@ -22,15 +22,33 @@ body {
 /*     NAVBAR      */
 /* =============== */
 
+/* نخلي الشريط العلوي يعرض العناصر بشكل صح */
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.8rem 1.2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* القائمة تصير على اليمين */
+nav {
+  margin-right: auto; /* تدفّع القائمة لليمين */
+}
+
+/* نخلي العناصر داخل nav تطلع طوليّة */
 nav ul {
   list-style: none;
   display: flex;
-  flex-direction: column; /* يخليها طوليّة */
+  flex-direction: column; /* القائمة رأسية */
   gap: 10px;
   padding: 0;
   margin: 0;
 }
 
+/* شكل أزرار القائمة */
 nav ul li a {
   display: block;
   padding: 10px 20px;
@@ -39,25 +57,17 @@ nav ul li a {
   border-radius: 12px;
   font-weight: 700;
   color: #e5e7eb;
-  text-decoration: none !important; /* يشيل الخط */
+  text-decoration: none !important;
   transition: 0.2s;
 }
 
+/* تأثير عند المرور */
 nav ul li a:hover {
   background: rgba(56, 189, 248, 0.15);
   border-color: #38bdf8;
   color: #38bdf8;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: center;
-}
 
 /* =============== */
 /*     BUTTONS     */
