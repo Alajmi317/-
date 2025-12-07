@@ -405,8 +405,13 @@ nav a:focus {
   font-weight: 800;
 "></div>
 
-    <div class="nav-container">
-      <div class="logo">مستقبل</div>
+<header>
+  <div class="nav-container">
+    <div class="logo">موقعك</div>
+
+    <div id="welcomeUser"
+         style="color:#38bdf8; font-size:18px; font-weight:800; margin-left:15px;">
+    </div>
       <nav>
         <ul>
           <li><a href="#home">الرئيسية</a></li>
@@ -603,26 +608,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const logoutBtn = document.getElementById("logoutBtn");
   const welcome = document.getElementById("welcomeUser");
 
-  console.log("USER:", user); // يساعد نتأكد من القراءة
-
   if (user) {
-    // إظهار الترحيب
     welcome.textContent = "ارحب يا " + user.name;
-
-    // إخفاء زر تسجيل الدخول
-    if (loginBtn) loginBtn.style.display = "none";
-
-    // إظهار زر تسجيل الخروج
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
   }
 
-  // زر تسجيل الخروج
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("loggedUser");
-      window.location.reload();
-    });
-  }
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("loggedUser");
+    window.location.reload();
+  });
 
 });
 </script>
