@@ -649,7 +649,7 @@ document.querySelectorAll(".button-fire").forEach(btn => {
 
 });
 </script>
-
+    
     <script>
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", function(e) {
@@ -666,5 +666,27 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 </script>
 
+    <script>
+  const intro = document.getElementById("intro-screen");
+  const startBtn = document.getElementById("start-btn");
+
+  // عند الضغط على زر البدء
+  startBtn.addEventListener("click", () => {
+    intro.style.opacity = "0";
+    setTimeout(() => {
+      intro.style.display = "none";
+    }, 1000);
+  });
+
+  // أو تختفي تلقائياً بعد 3 ثوانٍ
+  setTimeout(() => {
+    intro.style.opacity = "0";
+    setTimeout(() => {
+      intro.style.display = "none";
+    }, 1000);
+  }, 3000);
+</script>
+
+    
 </body>
 </html>
