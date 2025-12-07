@@ -1,88 +1,73 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>الموقع الشخصي</title>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap">
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .btn-outline {
-  color: #e5e7eb !important;
-  font-weight: 700;
-}
-
-.btn-outline:visited {
-  color: #e5e7eb !important;
-}
-
-.btn-outline:hover {
-  color: #38bdf8 !important; /* لون عند المرور (اختياري) */
-  border-color: #38bdf8;
-}
-
-.btn-outline:active {
-  color: #38bdf8 !important;
-}
-
-    .btn-outline span {
-  color: inherit !important;
-}
-
-  .btn-outline,
-.btn-outline * {
-  text-decoration: none !important;
-}
-
-    a {
-  text-decoration: none !important;
-}
-
-
-
-
-    nav a {
-  text-decoration: none !important;
-  color: #e5e7eb; /* اللون الأساسي */
-  font-weight: 700;
-}
-
-nav a:visited {
-  color: #e5e7eb !important; /* يمنع اللون البنفسجي */
-}
-
-nav a:hover {
-  color: #38bdf8; /* لون عند المرور (اختياري) */
-}
-
-nav a:active {
-  color: #38bdf8;
-}
-
-nav a:focus {
-  outline: none;
-}
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-  font-family: "Tajawal", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #0f172a;
-  color: #e5e7eb;
-  line-height: 1.7;
-  font-weight: 700; /* يخلي كل النصوص عريضة */
-}
-
+      font-family: "Tajawal", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.7;
+      font-weight: 700;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    a { text-decoration: none; color: inherit; }
+
+    /* شاشة الترحيب */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    #intro-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-box {
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      padding: 40px 50px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .intro-box h1 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      color: #38bdf8;
+      font-weight: 800;
+    }
+
+    .intro-btn {
+      padding: 14px 40px;
+      font-size: 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: #0f172a;
+      font-weight: 800;
+      display: inline-block;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+    }
+
+    .intro-btn:hover {
+      transform: scale(1.05);
     }
 
     /* الشريط العلوي */
@@ -97,37 +82,45 @@ nav a:focus {
 
     .nav-container {
       max-width: 1000px;
-      margin: 0 auto;
+      margin: auto;
       padding: 0.8rem 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-    }
-
     nav ul {
+      list-style: none;
       display: flex;
       gap: 1rem;
-      list-style: none;
-      font-size: 0.95rem;
     }
 
     nav a {
-      padding: 0.3rem 0.6rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 999px;
-      transition: background 0.2s;
+      transition: 0.2s;
+      color: #e5e7eb;
+      font-weight: 700;
     }
 
     nav a:hover {
       background: rgba(148, 163, 184, 0.2);
+      color: #38bdf8;
     }
 
-    /* البطل (أول سكشن) */
+    /* زر أساسي */
+    .btn-primary {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: #0b1120;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+    }
+
+    /* قسم البطل */
     .hero {
       min-height: 80vh;
       display: flex;
@@ -140,261 +133,56 @@ nav a:focus {
       max-width: 1000px;
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      grid-template-columns: 3fr 2fr;
       gap: 2rem;
       align-items: center;
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.75rem;
+      background: rgba(15,118,110,0.1);
+      border: 1px solid rgba(45,212,191,0.4);
+      color: #5eead4;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
       font-size: 0.8rem;
-      background: rgba(15, 118, 110, 0.1);
-      color: #5eead4;
-      border: 1px solid rgba(45, 212, 191, 0.4);
+      display: inline-flex;
+      gap: 0.5rem;
       margin-bottom: 0.8rem;
     }
 
-    .hero-title {
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin-bottom: 0.6rem;
-    }
+    .hero-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .hero-subtitle { font-size: 1rem; color: #cbd5f5; margin-bottom: 1.2rem; }
 
-    .hero-subtitle {
-      font-size: 1rem;
-      color: #cbd5f5;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .btn-primary {
-      padding: 0.6rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #0ea5e9, #22c55e);
-      color: #0b1120;
-      font-weight: 600;
-      font-size: 0.95rem;
-      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
-    }
-
-    .btn-outline {
-      padding: 0.55rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .btn-outline span {
-      font-size: 1rem;
-    }
-
-    .hero-photo-wrap {
-      display: flex;
-      justify-content: center;
-    }
-
+    /* صورة البروفايل */
     .hero-photo-card {
       width: 230px;
-      background: radial-gradient(circle at top, #1e293b, #020617);
-      border-radius: 24px;
       padding: 0.8rem;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+      border-radius: 24px;
+      background: radial-gradient(circle at top, #1e293b, #020617);
       border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
     }
 
     .hero-photo {
       width: 100%;
-      aspect-ratio: 4 / 5;
       border-radius: 18px;
+      aspect-ratio: 4/5;
       object-fit: cover;
-      display: block;
       margin-bottom: 0.75rem;
     }
 
-    .hero-photo-info {
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
+    /* الأقسام */
+    section { padding: 2rem 1.2rem 2.5rem; }
+    .section-inner { max-width: 1000px; margin: auto; }
+    .section-title { font-size: 1.4rem; margin-bottom: 1rem; }
+    .section-description { font-size: 0.95rem; color: #cbd5f5; margin-bottom: 1.5rem; }
 
-    .hero-photo-info strong {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    /* الأقسام العامة */
-    section {
-      padding: 2rem 1.2rem 2.5rem;
-    }
-
-    .section-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .section-description {
-      font-size: 0.95rem;
-      color: #cbd5f5;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-grid {
-      display: grid;
-      gap: 1.2rem;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    }
-
-    .about-box {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 18px;
-      padding: 1rem 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 0.95rem;
-    }
-
-    .about-list {
-      list-style: none;
-      font-size: 0.9rem;
-    }
-
-    .about-list li + li {
-      margin-top: 0.4rem;
-    }
-
-    .about-label {
-      color: #a5b4fc;
-    }
-
-    /* المهارات */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .chip {
-      padding: 0.25rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 0.85rem;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    /* الأعمال */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 0.9rem 1rem 1.1rem;
-      font-size: 0.9rem;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-      color: #a5b4fc;
-      margin-bottom: 0.4rem;
-    }
-
-    /* تواصل */
-    .contact-grid {
-      display: grid;
-      gap: 1.2rem;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-    }
-
-    .contact-item {
-      font-size: 0.9rem;
-    }
-
-    .contact-label {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 0.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .contact-value {
-      font-size: 0.95rem;
-    }
-
-    .contact-note {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 0.5rem;
-    }
-
-    footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-      padding: 1rem 1.2rem 1.5rem;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      text-align: center;
-    }
-
-    /* موبايل */
-    @media (max-width: 768px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-        text-align: center;
-      }
-
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .hero-photo-wrap {
-        order: -1;
-      }
-
-      .about-grid,
-      .contact-grid,
-      .cards-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      nav ul {
-        display: none; /* للتبسيط مافي منيو موبايل الآن */
-      }
-    }
   </style>
 </head>
+
 <body>
 
-  
+<!-- شاشة الترحيب -->
 <div id="intro-screen">
   <div class="intro-box">
     <h1>أهلاً بك في مستقبل</h1>
@@ -402,272 +190,54 @@ nav a:focus {
   </div>
 </div>
 
-  <!-- هنا يكمل باقي موقعك: الهيدر، الهيرو، الخ... -->
-
-
-  <!-- الشريط العلوي -->
-  <header>
-    <div id="welcomeUser" style="
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  color: #38bdf8;
-  font-size: 18px;
-  font-weight: 800;
-"></div>
-
+<!-- الهيدر -->
 <header>
   <div class="nav-container">
     <div class="logo">حياك الله في مستقبل</div>
 
-    <div id="welcomeUser"
-         style="color:#38bdf8; font-size:18px; font-weight:800; margin-left:15px;">
-    </div>
-      <nav>
-        <ul>
-           <li><a href="index.html">الرئيسية</a></li>
-           <li><a href="about.html">عني</a></li>
-           <li><a href="skills.html">المهارات</a></li>
-           <li><a href="projects.html">الأعمال</a></li>
-           <li><a href="contact.html">تواصل</a></li>
-          
-          <li><a id="loginBtn" class="nav-btn" href="login.html">تسجيل الدخول</a></li>
-          <li><a id="logoutBtn" class="nav-btn" href="#" style="display:none;">تسجيل الخروج</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">عني</a></li>
+        <li><a href="skills.html">المهارات</a></li>
+        <li><a href="projects.html">الأعمال</a></li>
+        <li><a href="contact.html">تواصل</a></li>
+        <li><a id="loginBtn" class="btn-outline" href="login.html">تسجيل الدخول</a></li>
+        <li><a id="logoutBtn" class="btn-outline" href="#" style="display:none;">تسجيل الخروج</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <!-- البطل -->
-  <main id="home" class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="badge">
-          <span>جاهز للعمل</span>
-          <span>•</span>
-          <span>موقع مستقبل</span>
-        </div>
-        <h1 class="hero-title">أهلاً، أنا عبدالله العجمي</h1>
-        <p class="hero-subtitle">
-          انا عبدالله احب التكنلوجيا و اللعب. هاذا اول موقع اجتماعي لي وبسوي مشاريع واحطها هنا
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn-primary">شوف أعمالي</a>
-          <a href="#projects" class="btn-primary button-fire">
-            <span>✉️</span>
-            <span>تواصل معي</span>
-          </a>
-        </div>
+<!-- البطل -->
+<main class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">
+        <span>جاهز للعمل</span>
+        <span>•</span>
+        <span>موقع مستقبل</span>
       </div>
 
-      <div class="hero-photo-wrap">
-        <div class="hero-photo-card">
-          <!-- غيّر مسار الصورة إلى صورتك -->
-          <img src="profile.jpg" alt="صورة الموقع" class="hero-photo" />
-          <div class="hero-photo-info">
-            <strong>عبدالله العجمي</strong>
-            مصمم / مطوّر / طالب
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+      <h1 class="hero-title">أهلاً، أنا عبدالله العجمي</h1>
 
-  <!-- عني -->
-  <section id="about">
-    <div class="section-inner">
-      <h2 class="section-title">عني</h2>
-      <p class="section-description">
-        مساحة بسيطة تعرّف فيها بنفسك أكثر، خبرتك، شغفك، أو حتى هواياتك.
+      <p class="hero-subtitle">
+        انا عبدالله احب التكنلوجيا و اللعب. هاذا أول موقع اجتماعي لي وبسوي مشاريع وأحطها هنا.
       </p>
 
-      <div class="about-grid">
-        <div class="about-box">
-          <p>
-            انا طالب في المرحلة المتوسطة
-            أحب البرمجة وتصميم المواقع، أتعلم حالياً HTML و CSS و أشتغل على مشروعي
-            الشخصي. أستمتع بتجربة أفكار جديدة والتطوير على مهاراتي.
-          </p>
-        </div>
-
-        <div class="about-box">
-          <ul class="about-list">
-            <li><span class="about-label">الاسم:</span> [عبدالله]</li>
-            <li><span class="about-label">المدينة:</span> [الكويت]</li>
-            <li><span class="about-label">المجال:</span> [طالب / مبرمج مبتدئ]</li>
-            <li><span class="about-label">الهوايات:</span> [ألعاب، برمجة، مونتاج]</li>
-          </ul>
-        </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">شوف أعمالي</a>
       </div>
     </div>
-  </section>
 
-  <!-- المهارات -->
-  <section id="skills">
-    <div class="section-inner">
-      <h2 class="section-title">المهارات</h2>
-      <p class="section-description">
-        اكتب الأدوات أو الأشياء اللي تعرف تستخدمها أو تتعلمها حالياً.
-      </p>
-
-      <div class="chips">
-        <div class="chip">HTML &amp; CSS (مبتدئ)</div>
-        <div class="chip">تصميم بسيط للويب</div>
-        <div class="chip">العمل على الكمبيوتر</div>
-        <div class="chip">التعلّم السريع</div>
-        <div class="chip">الالتزام بالمواعيد</div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-card">
+        <img src="profile.jpg" class="hero-photo">
+        <div class="hero-photo-info"><strong>عبدالله العجمي</strong> مصمم / مطوّر / طالب</div>
       </div>
     </div>
-  </section>
-
-  <!-- الأعمال / المشاريع -->
-  <section id="projects">
-    <div class="section-inner">
-      <h2 class="section-title">أعمالي / مشاريعي</h2>
-      <p class="section-description">
-        حط هنا أمثلة من الأشياء اللي سويتها: موقع، بوستر، مونتاج، قناة يوتيوب، إلخ.
-      </p>
-
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-title">مشروع 1</div>
-          <div class="card-tag">شجرة العائلة</div>
-          <p>
-            https://shajarat-alabdullah-kappa.vercel.app/index.html
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">مشروع 2</div>
-          <div class="card-tag">قناة يوتيوب</div>
-          <p>
-            اكتب عن قناتك لو عندك، أو أي محتوى تنشره (جيم بلاي، شروحات، إلخ).
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">مشروع 3</div>
-          <div class="card-tag">أي شيء تحب تضيفه</div>
-          <p>
-            تقدر تغيّر العنوان والوصف، أو تحذف الكارت كله لو ما تحتاجه.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- تواصل -->
-  <section id="contact">
-    <div class="section-inner">
-      <h2 class="section-title">تواصل معي</h2>
-      <p class="section-description">
-        هذه الطرق اللي حاب الناس تتواصل معك من خلالها.
-      </p>
-
-      <div class="contact-grid">
-        <div class="about-box">
-          <div class="contact-item">
-            <div class="contact-label">البريد الإلكتروني</div>
-            <div class="contact-value">alajmi.9732@gmail.com</div>
-          </div>
-          <div class="contact-item" style="margin-top:0.8rem;">
-            <div class="contact-label">إنستغرام</div>
-            <div class="contact-value">@akw9_7</div>
-          </div>
-          <div class="contact-item" style="margin-top:0.8rem;">
-            <div class="contact-label">snapchat</div>
-            <div class="contact-value">@akw9_7</div>
-          </div>
-        </div>
-
-        <div class="about-box">
-          <div class="contact-label">ملاحظة</div>
-          <p class="contact-note">
-            لا تكتب معلومات ما تبي الناس تشوفها. حط بس وسائل التواصل اللي تناسبك،
-            وتقدر بأي وقت تغيّرها من ملف الـ HTML.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; <span id="year"></span> موقع مستقبل. كل الحقوق محفوظة.
-  </footer>
-
-  <script>
-    // تحديث السنة في الفوتر تلقائياً
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <script>
-  // قراءة بيانات المستخدم المسجل
-  const user = JSON.parse(localStorage.getItem("loggedUser"));
-
-  // إذا فيه مستخدم مسجل الدخول
-  if (user) {
-    document.getElementById("welcomeUser").textContent =
-      "ارحب يا " + user.name;
-  }
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  const user = JSON.parse(localStorage.getItem("loggedUser"));
-  const loginBtn = document.getElementById("loginBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const welcome = document.getElementById("welcomeUser");
-
-  if (user) {
-    welcome.textContent = "ارحب يا " + user.name;
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline-block";
-  }
-
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("loggedUser");
-    window.location.reload();
-  });
-
-});
-</script>
-
-    <script>
-document.querySelectorAll(".button-fire").forEach(btn => {
-
-  btn.addEventListener("click", function (e) {
-    e.preventDefault(); // يمنع الانتقال اللحظي
-
-    let link = this.getAttribute("href");
-
-    // شغّل الانيميشن
-    this.classList.add("fire-animate");
-
-    // انتظر 500ms ثم انتقل للصفحة
-    setTimeout(() => {
-      window.location.href = link;
-    }, 500);
-  });
-
-});
-</script>
-    
-    <script>
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    const target = document.querySelector(this.getAttribute("href"));
-    if (!target) return;
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  });
-});
-</script>
+  </div>
+</main>
 
 <script>
   const intro = document.getElementById("intro-screen");
@@ -675,29 +245,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
   startBtn.addEventListener("click", () => {
     intro.classList.add("hide");
-
-    setTimeout(() => {
-      intro.style.display = "none";
-    }, 800);
+    setTimeout(() => intro.style.display = "none", 800);
   });
 </script>
 
-<script>
-  const intro = document.getElementById("intro-screen");
-  const startBtn = document.getElementById("start-btn");
-
-  startBtn.addEventListener("click", () => {
-    intro.classList.add("hide");
-    setTimeout(() => {
-      intro.style.display = "none";
-    }, 800);
-  });
-</script>
-
-
-</body>
-</html>
-
-    
 </body>
 </html>
