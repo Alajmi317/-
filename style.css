@@ -274,3 +274,41 @@ nav ul {
   transform: scale(1.05) !important;
   box-shadow: 0 12px 30px rgba(34, 197, 94, 0.55) !important;
 }
+
+/* شاشة الترحيب */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+#intro-screen.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-box {
+  text-align: center;
+}
+
+.intro-box h1 {
+  color: #38bdf8;
+  font-size: 36px;
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.intro-btn {
+  padding: 14px 34px;
+  font-size: 22px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
