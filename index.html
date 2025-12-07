@@ -622,6 +622,25 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+    <script>
+document.querySelectorAll(".button-fire").forEach(btn => {
+
+  btn.addEventListener("click", function (e) {
+    e.preventDefault(); // يمنع الانتقال اللحظي
+
+    let link = this.getAttribute("href");
+
+    // شغّل الانيميشن
+    this.classList.add("fire-animate");
+
+    // انتظر 500ms ثم انتقل للصفحة
+    setTimeout(() => {
+      window.location.href = link;
+    }, 500);
+  });
+
+});
+</script>
 
 </body>
 </html>
